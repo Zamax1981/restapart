@@ -1,0 +1,981 @@
+/* =======================
+   Базовые стили и фон
+   ======================= */
+body {
+  /* Фон с градиентами */
+  background-color: hsla(160, 97%, 17%, 1);
+  background-image: radial-gradient(
+      at 76% 24%,
+      hsla(314, 66%, 77%, 0.66) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 0% 0%, hsla(28, 100%, 74%, 0.79) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 0.61) 0px, transparent 50%),
+    radial-gradient(at 80% 67%, hsla(355, 80%, 83%, 0.93) 0px, transparent 50%),
+    radial-gradient(at 14% 95%, hsla(32, 83%, 46%, 0.66) 0px, transparent 50%);
+  margin: 0; /* На всякий случай */
+  padding: 0;
+  /* Шрифт всего документа зададим через clamp,
+       чтобы он плавно менялся от ~14px до ~18px */
+  font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #fff; /* Текст по умолчанию светлый */
+}
+
+/* =======================
+     Шапка
+     ======================= */
+header {
+  position: sticky;
+  top: 0;
+  padding: clamp(1rem, 2vw, 2rem);
+  z-index: 999;
+  color: white;
+  background: rgba(175, 196, 189, 0.97);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo img {
+  /* Максимальный размер логотипа плавно меняется от 100px до 150px */
+  max-width: clamp(100px, 20vw, 150px);
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 5px 8px 8px rgba(0, 0, 0, 0.7);
+  background-color: white;
+}
+
+.logo-image {
+  opacity: 0;
+  animation: rotateIn 1s ease forwards;
+  animation-delay: 3.5s;
+}
+
+.logo-image.rotate-in {
+  animation: rotateIn 1s ease forwards;
+}
+
+/* =======================
+     Меню и заголовки
+     ======================= */
+.menu-container {
+  text-align: right;
+}
+
+/* h1 подстраивается от ~1.5rem до ~2.5rem */
+h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin: 0 0 clamp(0.5rem, 1vw, 1rem);
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+h1.zoom-text {
+  opacity: 0;
+  animation: scaleZoom 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  cursor: pointer;
+  color: #01583d;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+}
+
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-menu li {
+  margin: 0 clamp(1rem, 2vw, 2rem);
+}
+
+/* Ссылки масштабируются от 1rem до 1.5rem */
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  transition: color 0.3s ease;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  display: inline-block;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+  color: #01583d;
+  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Анимация появления ссылок */
+.nav-menu li a.menu-item-anim {
+  opacity: 0;
+  transform: scale(0) rotate(-10deg);
+  animation: hatch 0.8s ease forwards;
+}
+
+.nav-menu li:nth-child(1) a.menu-item-anim {
+  animation-delay: 1s;
+}
+.nav-menu li:nth-child(2) a.menu-item-anim {
+  animation-delay: 1.2s;
+}
+.nav-menu li:nth-child(3) a.menu-item-anim {
+  animation-delay: 1.4s;
+}
+.nav-menu li:nth-child(4) a.menu-item-anim {
+  animation-delay: 1.6s;
+}
+.nav-menu li:nth-child(5) a.menu-item-anim {
+  animation-delay: 1.8s;
+}
+.nav-menu li:nth-child(6) a.menu-item-anim {
+  animation-delay: 2.2s;
+}
+
+/* =======================
+     Основной контент
+     ======================= */
+main {
+  /* Отступы от 20px до 40px */
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  position: relative;
+  z-index: 1;
+}
+
+.intro {
+  margin: 0 auto clamp(1rem, 2vw, 2.5rem);
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 600px);
+  grid-template-rows: auto auto;
+  gap: 2rem;
+  max-width: 1200px;
+}
+
+h2.floating-text {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: clamp(1.3rem, 5vw, 2.2rem);
+  font-weight: bold;
+  line-height: 1.2;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  animation-delay: 1s;
+  margin-bottom: 2rem;
+}
+
+/* Контейнер текста в intro */
+.intro-content {
+  text-align: left;
+  padding-right: clamp(0.5rem, 2vw, 2rem);
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Кнопка "Бронировать"
+     Размер шрифта от 1rem до 1.5rem, отступы также подправлены clamp */
+.book-button {
+  width: fit-content;
+  display: inline-block;
+  padding: clamp(0.6rem, 1vw, 1rem) clamp(0.8rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: bold;
+  color: white;
+  background-color: #01583d;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease,
+    border-radius 3s ease;
+}
+
+.book-button.rotate-in {
+  opacity: 0;
+  animation: rotateIn 1s linear forwards 5.5s,
+    pulse 2s infinite ease-in-out 6.5s;
+}
+
+.book-button:hover {
+  background-color: white;
+  color: #01583d;
+  border-radius: 30px;
+}
+
+/* Картинки в intro */
+.main-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+.main-image.rotate-in {
+  opacity: 0;
+  animation: rotateIn 1s linear forwards 5.5s, sway 4s infinite ease-in-out 6.5s;
+}
+
+/* Анимированный текст */
+.floating-text {
+  opacity: 0;
+  animation: floatIn 1.5s ease forwards;
+  margin-bottom: clamp(0.75rem, 2vw, 2rem);
+  text-align: left;
+}
+
+p.floating-text {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  line-height: 1.4;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.95);
+  animation-delay: 2s;
+}
+
+/* =======================
+     Кнопка "вверх"
+     ======================= */
+.scroll-top {
+  position: fixed;
+  bottom: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  background-color: #01583d;
+  color: white;
+  border: 2px white;
+  border-radius: 50%;
+  width: clamp(25px, 6vw, 35px);
+  height: clamp(25px, 6vw, 35px);
+  font-size: 1em;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(50px) scale(0.5);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 1000;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+.scroll-top.active {
+  opacity: 0.5;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top:hover {
+  opacity: 1;
+}
+
+.scroll-top.pulse {
+  animation: pulseGlow 1.5s ease-out;
+}
+
+/* =======================
+     Форма обратной связи
+     ======================= */
+.contact-form {
+  max-width: 400px;
+  margin: clamp(1.5rem, 4vw, 2.5rem) auto;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: clamp(1rem, 3vw, 1.25rem);
+  text-align: left;
+}
+
+/* Родительский контейнер для плавающих меток */
+.floating-label {
+  position: relative; /* позволяет position: absolute у Label */
+  margin-bottom: 1rem; /* Отступ между полями, при необходимости */
+}
+
+/* Стилизуем поле ввода/текста */
+.floating-label input,
+.floating-label textarea {
+  width: 100%;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+/* При фокусе заливаем белым фоном */
+.floating-label input:focus,
+.floating-label textarea:focus {
+  background: rgba(255, 255, 255, 1);
+  outline: none;
+}
+
+/* Поддержка изменения размера textarea */
+.floating-label textarea {
+  resize: vertical;
+}
+
+/* Сам лейбл — начинается поверх поля */
+.floating-label label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+  pointer-events: none; /* чтобы клики сразу попадали в поле */
+  transition: 0.2s ease; /* сглаженная анимация */
+}
+
+/* Когда поле в фокусе или уже заполнено, поднимаем лейбл */
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label,
+.floating-label textarea:focus + label,
+.floating-label textarea:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  font-size: 12px; /* уменьшаем метку, чтобы поместилась сверху */
+  color: #01583d; /* выделяем */
+}
+
+.contact-form button {
+  margin-top: clamp(1rem, 3vw, 2rem);
+  padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  border-radius: 5px;
+  border-color: #01583d;
+  background-color: #01583d;
+  color: #fff;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 5 5px 10px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: transform 1s ease, background-color 1s ease;
+}
+
+.contact-form button:hover {
+  transform: scale(1.05);
+  background-color: #fff;
+  color: #01583d;
+  box-shadow: none;
+}
+
+/* Стили для контактных ссылок */
+.contact-link {
+  color: rgba(238, 185, 40, 0.897);
+  text-decoration: none;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+  transition: color 0.3s ease;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.contact-link:hover {
+  color: #01583d;
+  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.7);
+}
+
+.contact-info p {
+  margin: 10px 0;
+}
+
+.contact-info a {
+  margin: 0 10px;
+}
+
+/* =======================
+     Подвал
+     ======================= */
+footer {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  position: relative;
+  z-index: 1;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+  margin-top: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+footer h3 {
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  margin-bottom: clamp(0.75rem, 2vw, 1rem);
+}
+
+footer p {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  margin: 8px 0;
+}
+
+footer p a {
+  color: #01583d;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer p a:hover {
+  color: #ffcc00;
+  transform: translateY(-2px);
+  display: inline-block;
+}
+
+/* Блок с иконками мессенджеров */
+.messenger-icons {
+  position: fixed;
+  left: clamp(1rem, 3vw, 2rem); /* Расстояние слева */
+  bottom: clamp(1rem, 3vw, 2rem); /* Расстояние снизу */
+  display: flex;
+  flex-direction: column; /* Иконки друг под другом */
+  gap: clamp(0.75rem, 2vw, 1rem); /* Отступы между иконками */
+  z-index: 1000; /* Чтобы было поверх прочего */
+}
+
+/* Общие стили для иконок */
+.messenger-icons a img {
+  width: clamp(40px, 6vw, 50px); /* Адаптивная ширина */
+  height: auto; /* Пропорциональная высота */
+  border-radius: 50%; /* Делаем круг */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  animation: pulse 2s infinite ease-in-out; /* Постоянная пульсация */
+  transition: transform 0.3s ease;
+}
+
+/* При наведении слегка увеличиваем */
+.messenger-icons a img:hover {
+  transform: scale(1.1);
+}
+
+.messenger-icons a img {
+  opacity: 0;
+  animation: rotateIn 1s linear forwards 4s,
+    /* Появление через 4 секунды */ pulse 2s infinite ease-in-out 5s; /* Пульс с 5-й секунды */
+}
+
+/* Company Details Section */
+.company-details {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 2rem);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.details-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.legal-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  animation: slideInLeft 1s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.banking-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  animation: slideInRight 1s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.legal-info h3,
+.banking-info h3 {
+  color: #01583d;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  animation: fadeInDown 0.8s ease-out forwards;
+  animation-delay: 0.9s;
+  opacity: 0;
+}
+
+.legal-info p,
+.banking-info p {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+.legal-info strong,
+.banking-info strong {
+  color: #01583d;
+  animation: pulse 2s infinite ease-in-out;
+  animation-delay: 1.5s;
+}
+
+@media (max-width: 480px) {
+  .messenger-icons a img {
+    width: 40px;
+    /* Можно уменьшить или скрыть */
+  }
+}
+
+/* =======================
+     Критический медиазапрос
+     для перестройки меню
+     ======================= */
+@media (max-width: 768px) {
+  .main-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-container {
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: clamp(4rem, 10vw, 80px);
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu li {
+    margin: clamp(0.5rem, 2vw, 1rem) 0;
+  }
+
+  .intro {
+    flex-direction: column;
+  }
+
+  .intro-content {
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+    max-width: 100%;
+  }
+
+  .main-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  }
+
+  header {
+    /* уменьшим паддинги */
+    padding: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .logo img {
+    /* уменьшим максимальный размер лого */
+    max-width: clamp(30px, 15vw, 100px);
+  }
+
+  h1 {
+    /* немного уменьшим заголовок */
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    /* уберём нижний отступ или сделаем меньше */
+    margin-bottom: 0.5rem;
+  }
+
+  /* можно также уменьшить отступы в nav-menu, если сильно распирает шапку */
+  .nav-menu li {
+    margin: 0.5rem 0;
+  }
+
+  /* Отменяем анимацию у кнопок "Бронировать" */
+  .book-button.rotate-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Отменяем анимацию у картинки */
+  .main-image.rotate-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .main-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  h1.zoom-text {
+    /* Отменяем любые анимации */
+    animation: none !important;
+    /* Опционально сразу выставляем элемент в конечное состояние анимации */
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .company-details {
+    padding: 1rem;
+  }
+
+  .details-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .legal-info,
+  .banking-info {
+    padding: 1rem;
+  }
+
+  .legal-info h3,
+  .banking-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .legal-info p,
+  .banking-info p {
+    font-size: 0.9rem;
+    margin: 0.4rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  h2.floating-text {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    margin-bottom: 1rem;
+  }
+
+  .intro-content {
+    padding-right: 0;
+  }
+
+  .right-content {
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .main-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .book-button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+  }
+
+  p.floating-text {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro {
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  h2.floating-text {
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  }
+
+  .book-button {
+    padding: clamp(0.4rem, 0.8vw, 0.8rem) clamp(0.6rem, 1.5vw, 1rem);
+  }
+
+  .messenger-icons {
+    bottom: clamp(0.5rem, 2vw, 1rem);
+    left: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .messenger-icons a img {
+    width: clamp(35px, 5vw, 45px);
+  }
+
+  .company-details {
+    padding: 0.8rem;
+  }
+
+  .details-content {
+    gap: 1rem;
+  }
+
+  .legal-info,
+  .banking-info {
+    padding: 0.8rem;
+  }
+
+  .legal-info h3,
+  .banking-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .legal-info p,
+  .banking-info p {
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+  }
+}
+
+/* Обновляем стили для планшетов */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .intro {
+    grid-template-columns: 1fr;
+    max-width: 90%;
+  }
+
+  .right-content {
+    order: -1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .book-button {
+    margin: 0;
+  }
+
+  .main-image {
+    max-width: 100%;
+  }
+
+  .company-details {
+    padding: 1.5rem;
+  }
+
+  .details-content {
+    gap: 1.8rem;
+  }
+
+  .legal-info,
+  .banking-info {
+    padding: 1.3rem;
+  }
+}
+
+/* Обновляем стили для cookie-banner */
+@media (max-width: 768px) {
+  #cookie-banner {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #cookie-banner button {
+    display: block;
+    margin: 8px auto 0;
+    width: 80%;
+    padding: 8px;
+  }
+}
+
+/* =======================
+     Анимации CSS
+     ======================= */
+@keyframes sway {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hatch {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(1, 88, 61, 0.4);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 15px rgba(1, 88, 61, 0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicon/favicon-128x128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon/favicon-256x256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/favicon-512x512.png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Android Chrome -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/favicon-512x512.png">
+
+    <!-- Manifest для PWA -->
+    <link rel="manifest" href="/site.webmanifest">
+    
+  <title>Спасибо за заявку!</title>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Редирект на главную через 15 секунд -->
+  <meta http-equiv="refresh" content="15;url=index.html" />
+
+  <!-- Стили для анимации счётчика -->
+  <style>
+    .countdown {
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: bold;
+      color: #ffcc00;
+      margin-top: 1rem;
+      animation: countdownPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes countdownPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <main class="intro" style="flex-direction: column; align-items: center; text-align: center;">
+    
+    <h1 class="floating-text" style="text-align: center;">Спасибо за заявку!</h1>
+
+    <p class="floating-text" style="text-align: center; max-width: 600px;">
+      Мы получили ваше сообщение и скоро свяжемся с Вами. <br>
+      Через <span id="seconds" class="countdown">15</span> секунд вы будете перенаправлены на главную.
+    </p>
+
+    <a href="index.html" class="book-button rotate-in">Вернуться сразу</a>
+  </main>
+
+  <!-- JS-счётчик -->
+  <script>
+    let seconds = 15;
+    const countdownEl = document.getElementById("seconds");
+
+    const countdown = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(countdown);
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
